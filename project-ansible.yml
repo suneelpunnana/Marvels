@@ -3,7 +3,7 @@
   become: true
   tasks:
     - name: copy war onto tomcat server
-copy:
-src: /opt/playbooks/target/BMI-0.war
-dest: /root/opt/apache-tomcat-8.5.47/webapps
+      copy:
+            src: /opt/playbooks/target/BMI-0.war
+            dest: /root/opt/apache-tomcat-8.5.47/webapps
 ...
