@@ -5,7 +5,6 @@ pipeline {
     }   
     environment{
         sonarscanner = tool 'SonarScanner'
-        ansibleHome = tool 'Ansible_server'
     }
     stages {
         stage('Compile-Build-Test ') {
@@ -48,8 +47,7 @@ pipeline {
         }   
         stage('Deploying artifact to all hosts from ansible'){
             steps{
-                sh '${ansibleHome} ansible-playbook /opt/playbooks/project-ansible.yml'
-                //sshPublisher(publishers: [sshPublisherDesc(configName: 'Ansible_server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook /opt/playbooks/project-ansible.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'Ansible_server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook /opt/playbooks/project-ansible.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
             }
         } 
         /*stage('Deployment to AWS'){
