@@ -14,10 +14,12 @@ public class BMIServlet extends HttpServlet {
 		double height = Float.parseFloat(request.getParameter("height"));
 		double bm = bmi(weight,height);
 		request.setAttribute("bmi", bm);
-		RequestDispatcher rd = request.getRequestDispatcher("bmi.jsp");
-		rd.forward(request,response);
+		RequestDispatcher rd = request.getRequestDispatcher("bmi.jsp").forward(request,response);
 	}
 	public double bmi(double w,double h) {
-		return (w/(h*h));
+		double a = h*h;
+		double b = w;
+		double bmi = b/a;
+		return bmi;
 	}
 }
