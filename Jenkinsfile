@@ -37,7 +37,7 @@ pipeline {
         stage('Uploading yml to Ansible'){
             steps{
                 //sshPublisher(publishers: [sshPublisherDesc(configName: 'Ansible_server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//opt//playbooks', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'project-ansible.yml')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])   
-                sh 'curl -v -F file=@project-ansible.yml -u ansadmin:comrades http://52.15.37.45/home/ansadmin/opt/playbooks/project-ansible.yml'
+                sh 'curl -v -F file=@project-ansible.yml -u ansadmin:comrades http://52.15.37.45:22/home/ansadmin/opt/playbooks/project-ansible.yml'
             }
             
         }
