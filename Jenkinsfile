@@ -37,7 +37,7 @@ pipeline {
         stage('Uploading yml to Ansible'){
             steps{
                 //sshPublisher(publishers: [sshPublisherDesc(configName: 'Ansible_server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//opt//playbooks', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'project-ansible.yml')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])   
-                sh 'scp project-ansible.yml ansadmin@52.15.37.45:/opt/playbooks'
+                sh 'scp project-ansible.yml ansadmin@172.31.22.13:/opt/playbooks'
             }
             
         }
