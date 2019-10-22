@@ -56,7 +56,7 @@ pipeline {
         stage('Executing Playbook'){
             steps{
                 withCredentials([string(credentialsId: 'ANSADMIN_PASSWORD', variable: 'ansadmin_password')]){//-C \"export VAULTPASS=${ansadmin_password};
-                    sh 'sshpass -p ${ansadmin_password} ssh -v -o StrictHostKeyChecking=no ansadmin@172.31.22.13:~/opt/playbooks/ansible-playbook project-ansible.yml'
+                    sh 'sshpass -p ${ansadmin_password} ssh -v -o StrictHostKeyChecking=no ansadmin@172.31.22.13;cd /opt/playbooks;ansible-playbook project-ansible.yml'
                 }
             }
         }
