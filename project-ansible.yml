@@ -1,4 +1,9 @@
 ---
+- hosts: self
+  become: true
+  tasks:
+    - name: Download artifact from nexus
+      shell: scp -v http://18.224.155.110:8081/nexus/content/repositories/devopstraining/comrades/bmi/BMI/BMI-176.war /opt/playbooks/target
 - hosts: web-servers
   become: true
   tasks:
@@ -6,9 +11,4 @@
       copy:
             src: /opt/playbooks/target/BMI-0.war
             dest: /root/opt/apache-tomcat-8.5.47/webapps
-- hosts: self
-  become: true
-  tasks:
-    - name: Download artifact from nexus
-      shell: scp -v http://18.224.155.110:8081/nexus/content/repositories/devopstraining/comrades/bmi/BMI/BMI-176.war /opt/playbooks/target
 ...
