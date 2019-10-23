@@ -31,6 +31,7 @@ pipeline {
                withCredentials([usernamePassword(credentialsId: 'nexus-credentialss', passwordVariable: 'password', usernameVariable: 'username'),string(credentialsId: 'NEXUS_URL', variable: 'nexus_url')]){
                     //sh 'curl -u ${username}:${password} --upload-file target/BMIBeta-${BUILD_NUMBER}.jar http://18.224.155.110:8081/nexus/content/repositories/devopstraining/comrades/BMI-${BUILD_NUMBER}.war'
                    sh 'curl -v -F file=@target/BMI-${BUILD_NUMBER}.war -u ${username}:${password} http://${nexus_url}/nexus/content/repositories/devopstraining/comrades/bmi/BMI/BMI-${BUILD_NUMBER}.war'
+                    sh 'curl -v -F file=@pom.xml -u ${username}:${password} http://${nexus_url}/nexus/content/repositories/devopstraining/comrades/bmi/BMI/pom.xml'
                }
             }
         }
@@ -60,16 +61,20 @@ pipeline {
                 }
             }
         }
-        post { 
-         success { 
-            echo 'notified to slack '
-            slackSend (color: '#00FF00', message: " JOB SUCCESSFUL: Job '${JOB_NAME} [${BUILD_NUMBER}]' (${BUILD_URL})")
-         }
-         failure {
-            echo 'notified to slack'
-            slackSend (color: '#FF0000', message: " JOB FAILED: Job '${JOB_NAME} [${BUILD_NUMBER}]' (${BUILD_URL})")
-         }
-    }
+        stage('slack'){
+            steps{
+                post { 
+                success { 
+                    echo 'notified to slack '
+                    slackSend (color: '#00FF00', message: " JOB SUCCESSFUL: Job '${JOB_NAME} [${BUILD_NUMBER}]' (${BUILD_URL})")
+                }
+                failure {
+                    echo 'notified to slack'
+                    slackSend (color: '#FF0000', message: " JOB FAILED: Job '${JOB_NAME} [${BUILD_NUMBER}]' (${BUILD_URL})")
+                }
+               }
+            }
+        }
         /*stage('Deployment to AWS'){
             steps{
             withCredentials([usernamePassword(credentialsId: 'tomcatCredentials', passwordVariable: 'password', usernameVariable: 'username'),string(credentialsId: 'TOMCAT_URL', variable: 'tomcat_url')]){
@@ -77,7 +82,7 @@ pipeline {
                     sh 'curl -v -u ${username}:${password} -T target/BMI${BUILD_NUMBER}.war ${tomcat_url}/manager/text/deploy?path=/BMI'
                 }
             }
-        }*/
+        }*\
         
  }
 }
