@@ -31,7 +31,7 @@ pipeline {
                withCredentials([usernamePassword(credentialsId: 'nexus-credentialss', passwordVariable: 'password', usernameVariable: 'username'),string(credentialsId: 'NEXUS_URL', variable: 'nexus_url')]){
                     //sh 'curl -u ${username}:${password} --upload-file target/BMIBeta-${BUILD_NUMBER}.jar http://18.224.155.110:8081/nexus/content/repositories/devopstraining/comrades/BMI-${BUILD_NUMBER}.war'
                    sh 'curl -v -F file=@target/BMI-${BUILD_NUMBER}.war -u ${username}:${password} http://${nexus_url}/nexus/content/repositories/devopstraining/comrades/BMI-${BUILD_NUMBER}.war'
-                    sh 'curl -v -F file=@pom.xml -u ${username}:${password} http://${nexus_url}/nexus/content/repositories/devopstraining/comrades/pom.xml'
+                    sh 'curl -v -F file=@pom.xml -u ${username}:${password} http://${nexus_url}/nexus/content/repositories/devopstraining/comrades/bmi/BMI/pom.xml'
                }
             }
         }
