@@ -4,6 +4,8 @@
   tasks:
     - name: Download artifact from nexus
       maven_artifact:
+            group_id: comrades.bmi
+            artifact_id: BMI
             repository_url: 'http://18.224.155.110:8081/nexus/content/repositories/devopstraining/comrades/BMI-100.war'
             username: trainee
             password: trainee
