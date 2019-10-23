@@ -43,7 +43,7 @@ pipeline {
             }
             
         }
-        stage('Uploading artifacts to Ansible'){
+        /*stage('Uploading artifacts to Ansible'){
             steps{
                 withCredentials([string(credentialsId: 'ANSADMIN_PASSWORD', variable: 'ansadmin_password')]){
                 //sshPublisher(publishers: [sshPublisherDesc(configName: 'Ansible_server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook /opt/playbooks/project-ansible.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//opt//playbooks', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/target/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
@@ -51,15 +51,15 @@ pipeline {
                 sh 'sshpass -p ${ansadmin_password} scp -v target/*.war ansadmin@172.31.22.13:/opt/playbooks/target'
                 }
             }
-        }
-       /* stage('Executing Playbook'){
+        }*/
+       stage('Executing Playbook'){
             steps{
                 withCredentials([string(credentialsId: 'ANSADMIN_PASSWORD', variable: 'ansadmin_password')]){//-C \"export VAULTPASS=${ansadmin_password};
                     sh 'sshpass -p ${ansadmin_password} ssh -v -o StrictHostKeyChecking=no ansadmin@172.31.22.13 -C \"ansible-playbook /opt/playbooks/project-ansible.yml\"'
                     //sshPublisher(publishers: [sshPublisherDesc(configName: 'Ansible_server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook /opt/playbooks/project-ansible.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
                 }
             }
-        }*/
+        }
         
         /*stage('Deployment to AWS'){
             steps{
