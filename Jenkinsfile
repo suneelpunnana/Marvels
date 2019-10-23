@@ -82,7 +82,7 @@ pipeline {
                     sh 'curl -v -u ${username}:${password} -T target/BMI${BUILD_NUMBER}.war ${tomcat_url}/manager/text/deploy?path=/BMI'
                 }
             }
-        }*\
+        }*/
         
- }
+     }
 }
