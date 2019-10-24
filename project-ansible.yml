@@ -2,6 +2,12 @@
 - hosts: web-servers
   become: true
   tasks:
+    - name: Download war from Nexus
+      get-url:
+            url: http://18.224.155.110:8081/nexus/content/repositories/devopstraining/comrades/bmi/BMI/BMI-198.war
+            username: trainee
+            password: trainee
+            dest: /opt/playbooks/BMI_3.0.war
     - name: Copy war onto tomcat server
       copy:
             src: /opt/playbooks/target/BMI.war
