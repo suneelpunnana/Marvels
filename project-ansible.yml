@@ -3,7 +3,7 @@
   become: true
   tasks:
     - name: Download war from Nexus
-      get-url:
+      get_url:
             url: http://18.224.155.110:8081/nexus/content/repositories/devopstraining/comrades/bmi/BMI/BMI-198.war
             username: trainee
             password: trainee
