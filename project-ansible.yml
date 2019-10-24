@@ -5,9 +5,9 @@
     - name: Download war from Nexus
       get_url:
             url: http://18.224.155.110:8081/nexus/content/repositories/devopstraining/comrades/bmi/BMI/BMI-198.war
-            dest: /opt/playbooks/target
+            dest: /opt/playbooks/target/
     - name: Copy war onto tomcat server
       copy:
-            src: /opt/playbooks/target/BMI_3.0.war
+            src: /opt/playbooks/target/BMI.war
             dest: /root/opt/apache-tomcat-8.5.47/webapps
 ...
