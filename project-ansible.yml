@@ -2,10 +2,13 @@
 - hosts: web-servers
   become: true
   tasks:
-    - name: Download war from Nexus
-      get_url:
-            url: http://18.224.155.110:8081/nexus/content/repositories/devopstraining/comrades/bmi/BMI/BMI-198.war
-            dest: /opt/playbooks/target/
+    - maven_artifact:
+          group_id: com.aea
+          artifact_id: BMI-198
+          repository_url: 'http://18.224.155.110:8081/nexus/content/repositories/devopstraining/comrades/bmi/BMI/'
+          username: trainee
+          password: trainee
+          dest: /opt/playbooks/target/BMI-3.3.war
     - name: Copy war onto tomcat server
       copy:
             src: /opt/playbooks/target/BMI.war
