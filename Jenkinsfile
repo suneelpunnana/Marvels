@@ -49,7 +49,7 @@ pipeline {
                 //sshPublisher(publishers: [sshPublisherDesc(configName: 'Ansible_server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook /opt/playbooks/project-ansible.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//opt//playbooks', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/target/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
                 //sh 'scp -v -i /home/ansadmin/.ssh/jen-ans.pub -o StrictHostKeyChecking=no target/*.war ansadmin@172.31.22.13:/opt/playbooks/target'
                 //sh 'sshpass -p ${ansadmin_password} scp -v target/*.war ansadmin@172.31.22.13:/opt/playbooks/target'
-                sh 'sshpass -p ${ansadmin_password} ssh -v -o StrictHostKeyChecking=no ansadmin@172.31.22.13 -C \"cd /opt/playbooks/target; wget -O BMI.war http://18.224.155.110:8081/nexus/content/repositories/devopstraining/comrades/bmi/BMI/BMI-${BUILD_NUMBER}.war\"'
+                sh 'sshpass -p ${ansadmin_password} ssh -v -o StrictHostKeyChecking=no ansadmin@172.31.22.13 \"cd /opt/playbooks/target; wget -O BMI.war http://18.224.155.110:8081/nexus/content/repositories/devopstraining/comrades/bmi/BMI/BMI-${BUILD_NUMBER}.war\"'
                 }
             }
         }
