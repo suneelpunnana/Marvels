@@ -43,7 +43,7 @@ pipeline {
             }
             
         }
-        /*stage('Uploading artifacts to Ansible'){
+        stage('Uploading artifacts to Ansible'){
             steps{
                 withCredentials([string(credentialsId: 'ANSADMIN_PASSWORD', variable: 'ansadmin_password')]){
                 //sshPublisher(publishers: [sshPublisherDesc(configName: 'Ansible_server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook /opt/playbooks/project-ansible.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//opt//playbooks', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '/target/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
@@ -52,7 +52,7 @@ pipeline {
                 sh 'sshpass -p ${ansadmin_password} ssh -v -o StrictHostKeyChecking=no ansadmin@172.31.22.13 \"cd /opt/playbooks/target; wget -O BMI.war http://18.224.155.110:8081/nexus/content/repositories/devopstraining/comrades/bmi/BMI/BMI-${BUILD_NUMBER}.war\"'
                 }
             }
-        }*/
+        }
        stage('Executing Playbook'){
             steps{
                 withCredentials([string(credentialsId: 'ANSADMIN_PASSWORD', variable: 'ansadmin_password')]){//-C \"export VAULTPASS=${ansadmin_password};
@@ -69,7 +69,7 @@ pipeline {
                     sh 'curl -v -u ${username}:${password} -T target/BMI${BUILD_NUMBER}.war ${tomcat_url}/manager/text/deploy?path=/BMI'
                 }
             }
-        }
+        }*/
         
      }
                post { 
@@ -80,7 +80,7 @@ pipeline {
                 failure {
                     echo 'notified to slack'
                     slackSend (color: '#FF0000', message: " JOB FAILED: Job '${JOB_NAME} [${BUILD_NUMBER}]' (${BUILD_URL})")
-                }*/
+                }
                }
 
 }
