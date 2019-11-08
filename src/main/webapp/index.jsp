@@ -7,7 +7,7 @@
 <title>BMI Calculator</title>
 </head>
 <body>
-<center><h2>Team Comrades BMI Calculator</h2>
+<center><h2>BMI Calculator</h2>
 <form action = "BMIServlet" method="post">
 <h4><label>Enter your weight: </label></h4>
 <input type = "text" name = "weight"/><br>
