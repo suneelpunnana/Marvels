@@ -12,12 +12,7 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage ('sonar'){
-             steps {
-                vul=$(curl -sX GET -u admin:admin ‘http://ec2-18-224-155-110.us-east-2.compute.amazonaws.com:9000/api/issues/search?projectKeys=ssl-dev&types=VULNERABILITY’);
-                }
-            }
-        /*stage('SonarQube Analysis'){
+        stage('SonarQube Analysis'){
             steps{
                withSonarQubeEnv('sonarqube'){
                      sh '${sonarscanner}/bin/sonar-scanner -Dproject.settings=./sonar-project.properties'
@@ -86,7 +81,7 @@ pipeline {
                     echo 'notified to slack'
                     slackSend (color: '#FF0000', message: " JOB FAILED: Job '${JOB_NAME} [${BUILD_NUMBER}]' (${BUILD_URL})")
                 }
-               }*/
                }
+   
 
 }
