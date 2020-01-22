@@ -14,7 +14,7 @@ pipeline {
         }
         stage ('sonar'){
              steps {
-                vul=$(curl -sX GET -u admin:admin ‘http://ec2-18-224-155-110.us-east-2.compute.amazonaws.com:9000/api/issues/search?projectKeys=ssl-dev&types=VULNERABILITY 31’);
+                vul=$(curl -sX GET -u admin:admin ‘http://ec2-18-224-155-110.us-east-2.compute.amazonaws.com:9000/api/issues/search?projectKeys=ssl-dev&types=VULNERABILITY’);
                 }
             }
         /*stage('SonarQube Analysis'){
