@@ -19,7 +19,8 @@ pipeline {
                 }
             }
         }
-        post{
+        stage{
+            steps{
              script{
     
    String jenkins= UserDetails(JSON)
@@ -29,6 +30,7 @@ pipeline {
    // print result
     Teamscore(jsondata,github,jenkins,sonar)
     }
+        }
         }
     }
         
