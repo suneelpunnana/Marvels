@@ -27,7 +27,7 @@ pipeline {
    String sonar=sonar(JSON)
    // int pull=gitpullrequest(jsondata)
    // print result
-    TeamScore(jsondata,github,jenkins,sonar)
+    Teamscore(jsondata,github,jenkins,sonar)
     }
         }
     }
