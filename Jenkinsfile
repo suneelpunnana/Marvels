@@ -27,11 +27,11 @@ pipeline {
              script{
     
    String jenkins= UserDetails(JSON)
-   String github=Github_Commit(JSON)
+   //String github=Github_Commit(JSON)
    String sonar=sonar(JSON)
    // int pull=gitpullrequest(jsondata)
    // print result
-    Teamscore(jsondata,github,jenkins,sonar)
+    Teamscore(jsondata,jenkins,sonar)
     }
         }
         }
