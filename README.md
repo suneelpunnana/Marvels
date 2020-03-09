@@ -1,3 +1,3 @@
 # BMIbeta
-BMI Calculator Appllication program
+BMI Calculator Appllication program API
 .
