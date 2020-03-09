@@ -1,3 +1,3 @@
 # BMIbeta
-BMI Calculator Appllication phvvfxbrogram
+BMI Calculator Appllication program
 .
