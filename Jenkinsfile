@@ -1,4 +1,7 @@
 pipeline {
+    libraries{
+    lib 'shlib'
+    }
     agent any
     tools {
         maven "Maven"   
@@ -19,7 +22,7 @@ pipeline {
                 }
             }
         }
-        stage{
+        stage('TEAM'){
             steps{
              script{
     
