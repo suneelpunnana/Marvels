@@ -19,7 +19,20 @@ pipeline {
                 }
             }
         }
-        stage("Quality Gate") {
+        post{
+             script{
+    
+   String jenkins= UserDetails(JSON)
+   String github=Github_Commit(JSON)
+   String sonar=sonar(JSON)
+   // int pull=gitpullrequest(jsondata)
+   // print result
+    TeamScore(jsondata,github,jenkins,sonar)
+    }
+        }
+    }
+        
+        /*stage("Quality Gate") {
             steps {
               timeout(time: 3, unit: 'MINUTES') {
                 waitForQualityGate abortPipeline: true
@@ -60,7 +73,7 @@ pipeline {
                     //sshPublisher(publishers: [sshPublisherDesc(configName: 'Ansible_server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook /opt/playbooks/project-ansible.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
                 }
             }
-        }
+        }*/
         
         /*stage('Deployment to AWS'){
             steps{
@@ -71,7 +84,7 @@ pipeline {
             }
         }*/
         
-     }
+    /* }
                post { 
                 success { 
                     echo 'notified to slack '
@@ -81,7 +94,7 @@ pipeline {
                     echo 'notified to slack'
                     slackSend (color: '#FF0000', message: " JOB FAILED: Job '${JOB_NAME} [${BUILD_NUMBER}]' (${BUILD_URL})")
                 }
-               }
+               }*/
    
 
 }
