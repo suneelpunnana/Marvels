@@ -34,8 +34,8 @@ pipeline {
     Teamscore(JSON,github,jenkins,son)
     }
         }
-        }
-    }*/
+        }*/
+    }
         
         /*stage("Quality Gate") {
             steps {
