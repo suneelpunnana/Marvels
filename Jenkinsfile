@@ -22,7 +22,7 @@ pipeline {
                 }
             }
         }
-        stage('TEAM'){
+       /* stage('TEAM'){
             steps{
              script{
     
@@ -35,7 +35,7 @@ pipeline {
     }
         }
         }
-    }
+    }*/
         
         /*stage("Quality Gate") {
             steps {
